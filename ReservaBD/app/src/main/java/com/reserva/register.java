@@ -36,6 +36,7 @@ public class register extends Activity implements View.OnClickListener{
         btn_register.setOnClickListener(this);
         btn_login.setOnClickListener(this);
         btn_reservation.setOnClickListener(this);
+        usersDataSource = new usersDataSource(this);
     }
 
     @Override
@@ -56,7 +57,7 @@ public class register extends Activity implements View.OnClickListener{
     }
 
     public void registerInDB(String username, String password){
-        usersDataSource = new usersDataSource(this);
+        usersDataSource.open();
         usersDataSource.createUser(username, password);
         Toast.makeText(this, "User successfuly created", Toast.LENGTH_LONG).show();
     }

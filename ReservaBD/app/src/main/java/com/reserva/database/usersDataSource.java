@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.reserva.model.User;
 
 /**
@@ -29,10 +31,10 @@ public class usersDataSource {
         dbHelper.close();
     }
 
-    public User createUser(String username, String password) {
+    public User createUser(String username_, String password_) {
         ContentValues values = new ContentValues();
-        values.put(userSQLHelper.COLUMN_USERNAME, username);
-        values.put(userSQLHelper.COLUMN_PASSWORD, password);
+        values.put(userSQLHelper.COLUMN_USERNAME, username_);
+        values.put(userSQLHelper.COLUMN_PASSWORD, password_);
         long insertId = database.insert(userSQLHelper.TABLE_USERS, null,
                 values);
         Cursor cursor = database.query(userSQLHelper.TABLE_USERS,
@@ -40,6 +42,7 @@ public class usersDataSource {
                 null, null, null);
         cursor.moveToFirst();
         User newUser = cursorToUser(cursor);
+        Log.d("new user", newUser.getUsername() + " " + newUser.getPassword());
         cursor.close();
         return newUser;
     }

@@ -18,7 +18,7 @@ public class userSQLHelper extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE = "create table "
             + TABLE_USERS + "(" + COLUMN_ID
             + " integer primary key autoincrement, " + COLUMN_USERNAME
-            + " text not null, " + COLUMN_PASSWORD + "text not null);";
+            + " text not null, " + COLUMN_PASSWORD + " text not null);";
 
     public userSQLHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
