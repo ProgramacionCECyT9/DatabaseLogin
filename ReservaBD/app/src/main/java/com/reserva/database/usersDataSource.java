@@ -42,7 +42,6 @@ public class usersDataSource {
                 null, null, null);
         cursor.moveToFirst();
         User newUser = cursorToUser(cursor);
-        Log.d("new user", newUser.getUsername() + " " + newUser.getPassword());
         cursor.close();
         return newUser;
     }
@@ -62,8 +61,10 @@ public class usersDataSource {
     public User getUser(String username, String password){
         Cursor cursor = database.query(userSQLHelper.TABLE_USERS,
                 allColumns,
-                userSQLHelper.COLUMN_USERNAME + " = " + username + " AND " + userSQLHelper.COLUMN_PASSWORD + " = " + password,
+                userSQLHelper.COLUMN_USERNAME + " = " + username,
                 null, null, null, null);
+        cursor.moveToFirst();
         return cursorToUser(cursor);
     }
 }
+//userSQLHelper.COLUMN_USERNAME + " = " + username + " AND " + userSQLHelper.COLUMN_PASSWORD + " = " + password,

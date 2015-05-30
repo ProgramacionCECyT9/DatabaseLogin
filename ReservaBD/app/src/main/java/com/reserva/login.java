@@ -57,7 +57,7 @@ public class login extends Activity implements View.OnClickListener {
 
     public boolean isValidLogin(String username, String password){
         usersDataSource.open();
-        if(usersDataSource.getUser(username, password) != null){
+        if(usersDataSource.getUser(username, password) == null){
             return false;
         }
         return true;
